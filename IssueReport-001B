@@ -1,0 +1,26 @@
+Feature: Search module
+
+Scenario: Duplicated Messages Displayed When Searching Without Any Keywords
+    Title: There are two same messages when search without any keywords input
+
+    Precondition:
+        - Navigate to https://petstore.octoperf.com/actions/Catalog.action web page
+
+    Steps:
+        Given I am on the homepage of the website
+        When I leave the search field empty
+        And I click on the Search button
+
+    Actual Result:
+        There are two identical error messages displayed:
+        - "Please enter a keyword to search for, then press the search button."
+        - "Please enter a keyword to search for, then press the search button."
+
+    Expected Result:
+        Only one error message should be displayed:
+        - "Please enter a keyword to search for, then press the search button."
+
+Test Date:
+Status: (Open, In Progress, Resolved, Closed)
+Error Category: (Low, Medium, High)
+Evidence : *screenshot*
