@@ -1,0 +1,31 @@
+Feature: Shopping Cart Functionality
+
+Scenario: Product on Shopping Cart Removed After User Logout and Login Again
+    Title: Product on Shopping Cart will be removed when user logout and login again
+
+    Precondition:
+        - Already open https://petstore.octoperf.com/actions/Catalog.action web page
+        - Already registered an account
+        - Already logged in
+
+    Steps:
+        Given I am on the homepage of the website
+        When I search for a product, such as "Adult Male Amazon Parrot"
+        And I add the product to the cart
+        And I click the Sign Out button
+        And I click the Sign In button
+        And I enter a valid username
+        And I enter a valid password
+        And I click the Login button
+        And I click on the Cart icon
+
+    Actual Result:
+        The shopping cart is empty
+
+    Expected Result:
+        The shopping cart should still contain the previously added product (Adult Male Amazon Parrot)
+
+Test Date:
+Status: (Open, In Progress, Resolved, Closed)
+Error Category: (Low, Medium, High)
+Evidence : *screenshot*
