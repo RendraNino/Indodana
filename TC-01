@@ -1,0 +1,17 @@
+Scenario 1:Create Public gist							
+Id Test Case : TC -01
+Description: Test case for create public gist without login/register account
+Feature :Create
+Type: Negative
+Precondition : -
+Test Steps: 1.  Go to link https://gist.github.com/
+            2. Click '+' ikon and choose create Gist 
+Data Input: - 
+Expected Result:1. Direct to Gist Github Discover
+                2. User can not create Gist 
+                3. Feature Create Gist not appear
+                4. Only shows fiture of Sign in,Sign Up, Search Gist, Gist Posted"
+Actual Result : - 
+Test Date: 
+Status : (Passed, Failed. Blocked)
+Error Category:(Low, Medium, High)
