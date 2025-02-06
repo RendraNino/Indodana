@@ -1,0 +1,129 @@
+### **1. Positive Test Cases:**
+
+#### **1.1. Valid Country Name**
+- **Input:** `USA`
+- **Expected Output:** A response with a list of countries matching "USA" (e.g., United States of America).
+- **Description:** This test ensures the endpoint returns the correct data when a valid country name is provided.
+
+#### **1.2. Country Name with Different Case**
+- **Input:** `usa` (lowercase)
+- **Expected Output:** A response with data for the United States of America, ensuring case-insensitivity.
+- **Description:** This tests that the endpoint is not case-sensitive and works with different letter casing.
+
+#### **1.3. Partial Country Name**
+- **Input:** `Uni` (for United States)
+- **Expected Output:** A list of countries whose names contain "Uni," like United States of America, United Kingdom, etc.
+- **Description:** Tests that the endpoint returns countries with partial matches when the input is a substring of the country name.
+
+#### **1.4. Country Name with Spaces**
+- **Input:** `United States of America`
+- **Expected Output:** A response with the complete data of the United States of America.
+- **Description:** Ensures that the endpoint handles spaces in country names properly.
+
+---
+
+### **2. Negative Test Cases:**
+
+#### **2.1. Invalid Country Name**
+- **Input:** `NotACountry`
+- **Expected Output:** An error message or empty array indicating no match was found.
+- **Description:** Tests how the API handles requests for non-existent countries.
+
+#### **2.2. Country Name with Special Characters**
+- **Input:** `Côte d'Ivoire` (Ivory Coast)
+- **Expected Output:** Correct data for Ivory Coast, ensuring special characters are correctly handled.
+- **Description:** Verifies that the API correctly handles countries with accents, apostrophes, or other special characters in their names.
+
+#### **2.3. Extremely Long Country Name**
+- **Input:** `United Republic of Tanzania` (or any long country name)
+- **Expected Output:** Correct data for Tanzania, ensuring the API handles long country names.
+- **Description:** Tests how the API handles country names that are longer than typical ones.
+
+#### **2.4. Input with Numbers**
+- **Input:** `Brazil2025`
+- **Expected Output:** An error message or empty result, since numbers are invalid for country names.
+- **Description:** Verifies that the API rejects non-alphabetical characters (such as numbers).
+
+---
+
+### **3. Edge Cases:**
+
+#### **3.1. Empty Input**
+- **Input:** `""` (empty string)
+- **Expected Output:** An error message or a 400 Bad Request response indicating that the country name is missing.
+- **Description:** Tests the endpoint’s ability to handle an empty query.
+
+#### **3.2. Querying with Spaces Only**
+- **Input:** `"     "` (only spaces)
+- **Expected Output:** An error or empty response indicating no country matches.
+- **Description:** Tests the endpoint’s ability to handle input that consists only of spaces.
+
+#### **3.3. Input with Leading/Trailing Spaces**
+- **Input:** `" United States "` (with spaces at the start or end)
+- **Expected Output:** Data for United States, verifying that the API trims spaces from the input.
+- **Description:** Ensures that leading and trailing spaces are handled correctly.
+
+---
+
+### **4. Boundary Test Cases:**
+
+#### **4.1. Input with a Very Short Country Name**
+- **Input:** `U` (or a country like Uganda or Ukraine)
+- **Expected Output:** A list of countries starting with `U`, such as Ukraine, Uganda, etc.
+- **Description:** Tests how the endpoint handles extremely short country names.
+
+#### **4.2. Input with a Country Name that Contains Numbers**
+- **Input:** `United States 50`
+- **Expected Output:** Error or empty response, as the country name should not include numbers.
+- **Description:** Verifies that country names containing numbers or other invalid characters are rejected.
+
+---
+
+### **5. Performance Test Cases:**
+
+#### **5.1. Load Test: Multiple Requests**
+- **Input:** `["USA", "India", "Germany", "Brazil", "China"]`
+- **Expected Output:** Correct data for all the countries.
+- **Description:** This test checks if the API can handle multiple requests at once or sequential requests in quick succession.
+
+#### **5.2. Large Input Size**
+- **Input:** A string that exceeds the maximum reasonable length for a country name, such as 1000 characters.
+- **Expected Output:** The API should either return an error or truncate the input to a reasonable length.
+- **Description:** Ensures that the API gracefully handles oversized inputs.
+
+---
+
+### **6. Internationalization Test Cases:**
+
+#### **6.1. Country Name in Another Language**
+- **Input:** `"España"` (for Spain)
+- **Expected Output:** Correct data for Spain, ensuring the API handles country names in different languages.
+- **Description:** Tests the API’s ability to recognize country names in non-English languages.
+
+#### **6.2. Country Name with Non-Latin Characters**
+- **Input:** `"Россия"` (Russia in Cyrillic)
+- **Expected Output:** Correct data for Russia, ensuring support for non-Latin characters.
+- **Description:** Verifies that the API handles non-Latin scripts like Cyrillic.
+
+---
+
+### **7. Security Test Cases:**
+
+#### **7.1. SQL Injection**
+- **Input:** `"'; DROP TABLE countries;--"`
+- **Expected Output:** An error message or sanitized response, ensuring the API is protected from SQL injection attacks.
+- **Description:** Verifies that the endpoint is secure and does not execute potentially harmful SQL queries.
+
+#### **7.2. Cross-Site Scripting (XSS)**
+- **Input:** `"<script>alert('test');</script>"`
+- **Expected Output:** An error message or sanitized response, ensuring the API prevents XSS attacks.
+- **Description:** Tests if the API sanitizes inputs to avoid XSS vulnerabilities.
+
+---
+
+### **8. Rate Limiting Test Cases:**
+
+#### **8.1. Exceeding Rate Limit**
+- **Input:** Make more requests than allowed in a given period (e.g., 1000 requests per minute).
+- **Expected Output:** A response indicating rate limiting (e.g., 429 Too Many Requests).
+- **Description:** Verifies that the API correctly enforces rate limits.

@@ -1,0 +1,162 @@
+Here’s a **comprehensive set of test cases** for testing the **`/currency/{currency}`** and **`/lang/{language}`** endpoints of the REST Countries API.
+
+---
+
+# **📌 Test Cases for `/currency/{currency}`**
+This endpoint returns all countries that use a given currency.
+
+## ✅ **Positive Test Cases (Valid Inputs)**
+1. **Valid Currency Code (ISO 4217 standard)**
+   - **Input:** `/currency/usd`
+   - **Expected Output:** Returns a list of all countries using the US Dollar.
+
+2. **Valid Currency Name**
+   - **Input:** `/currency/euro`
+   - **Expected Output:** Returns countries using the Euro.
+
+3. **Case-Insensitive Input**
+   - **Input:** `/currency/USD`, `/currency/usd`, `/currency/Usd`
+   - **Expected Output:** Should return the same results.
+
+4. **Multiple Countries Using Same Currency**
+   - **Input:** `/currency/inr`
+   - **Expected Output:** Returns multiple countries (e.g., India, Bhutan, Nepal).
+
+---
+
+## ❌ **Negative Test Cases (Invalid Inputs)**
+5. **Invalid Currency Code**
+   - **Input:** `/currency/xyz`
+   - **Expected Output:** 404 Not Found or empty response.
+
+6. **Currency Code with Special Characters**
+   - **Input:** `/currency/us$d`
+   - **Expected Output:** 404 Not Found or error message.
+
+7. **Numeric Input Instead of Currency Code**
+   - **Input:** `/currency/123`
+   - **Expected Output:** 404 Not Found.
+
+8. **Empty Input**
+   - **Input:** `/currency/`
+   - **Expected Output:** 404 Not Found.
+
+9. **SQL Injection Attempt**
+   - **Input:** `/currency/usd' OR '1'='1`
+   - **Expected Output:** API should return 404 or validation error.
+
+---
+
+## ⚡ **Edge Cases**
+10. **Obsolete or Rare Currencies**
+    - **Input:** `/currency/franc`
+    - **Expected Output:** Should return only countries still using the currency (e.g., Swiss Franc CHF).
+
+11. **Currency with Space or Hyphen**
+    - **Input:** `/currency/hong kong dollar`
+    - **Expected Output:** Should correctly return Hong Kong.
+
+12. **Long Input String**
+    - **Input:** `/currency/` followed by 500 random characters.
+    - **Expected Output:** API should handle gracefully and return an error.
+
+---
+
+## 🚀 **Performance & Security Tests**
+13. **High Load Testing**
+    - **Test:** Send 1000 concurrent requests for `/currency/eur`.
+    - **Expected Output:** API remains stable and responds correctly.
+
+14. **Stress Testing (Frequent Requests)**
+    - **Test:** Make 5000 requests for `/currency/usd` in a short time.
+    - **Expected Output:** API does not crash or slow down.
+
+15. **Rate Limit Testing**
+    - **Test:** Check if API rate limits excessive requests.
+    - **Expected Output:** API returns `429 Too Many Requests` if there’s a limit.
+
+---
+
+# **📌 Test Cases for `/lang/{language}`**
+This endpoint returns countries where a given language is spoken.
+
+## ✅ **Positive Test Cases (Valid Inputs)**
+1. **Valid Language Name**
+   - **Input:** `/lang/english`
+   - **Expected Output:** Returns a list of all English-speaking countries.
+
+2. **Valid Language Code (ISO 639-1)**
+   - **Input:** `/lang/en`
+   - **Expected Output:** Returns a list of all English-speaking countries.
+
+3. **Case-Insensitive Input**
+   - **Input:** `/lang/English`, `/lang/english`, `/lang/ENGLISH`
+   - **Expected Output:** Should return the same results.
+
+4. **Multiple Countries Using the Same Language**
+   - **Input:** `/lang/spanish`
+   - **Expected Output:** Returns many countries, including Spain, Mexico, and Argentina.
+
+---
+
+## ❌ **Negative Test Cases (Invalid Inputs)**
+5. **Invalid Language Name**
+   - **Input:** `/lang/elvish`
+   - **Expected Output:** 404 Not Found.
+
+6. **Invalid Language Code**
+   - **Input:** `/lang/zzz`
+   - **Expected Output:** 404 Not Found.
+
+7. **Special Characters in Language Name**
+   - **Input:** `/lang/eng@lish`
+   - **Expected Output:** 404 Not Found.
+
+8. **Numeric Input Instead of a Language Name**
+   - **Input:** `/lang/123`
+   - **Expected Output:** 404 Not Found.
+
+9. **Empty Input**
+   - **Input:** `/lang/`
+   - **Expected Output:** 404 Not Found.
+
+10. **SQL Injection Attempt**
+    - **Input:** `/lang/english' OR '1'='1`
+    - **Expected Output:** API should return 404 or validation error.
+
+---
+
+## ⚡ **Edge Cases**
+11. **Rare or Indigenous Languages**
+    - **Input:** `/lang/quechua`
+    - **Expected Output:** Should return relevant countries like Peru and Bolivia.
+
+12. **Language with Space or Hyphen**
+    - **Input:** `/lang/sign language`
+    - **Expected Output:** Should correctly return related countries.
+
+13. **Long Input String**
+    - **Input:** `/lang/` followed by 500 random characters.
+    - **Expected Output:** API should handle gracefully and return an error.
+
+---
+
+## 🚀 **Performance & Security Tests**
+14. **High Load Testing**
+    - **Test:** Send 1000 concurrent requests for `/lang/spanish`.
+    - **Expected Output:** API remains stable and responds correctly.
+
+15. **Stress Testing (Frequent Requests)**
+    - **Test:** Make 5000 requests for `/lang/english` in a short time.
+    - **Expected Output:** API does not crash or slow down.
+
+16. **Rate Limit Testing**
+    - **Test:** Check if API rate limits excessive requests.
+    - **Expected Output:** API returns `429 Too Many Requests` if there’s a limit.
+
+---
+
+### **Final Thoughts**
+These test cases ensure that the `/currency/{currency}` and `/lang/{language}` endpoints work as expected under normal, edge, and stress conditions.  
+
+Are you working on an automated test script for this API? 🚀
