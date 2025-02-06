@@ -1,0 +1,27 @@
+Scenario 3: Delete an existing public gist							
+Id Test Case : TC - 03.1
+Description: Test case for deleting an existing public gist by clicking the "Delete" button on the right up to page when opened public gist folder
+Feature :Edit
+Type: Positive
+Precondition : 1.Account must be registered on github
+               2.Public Gist was created
+Test Steps: 1. Go to link https://gist.github.com/
+            2. Click button Sign In then input user name/email and Password
+            3. Go to "View your gists"
+            4. Check "All Gist"
+            5. Choose "Create, edit, delete Gist Test Case" folder
+            6. Click the "Delete" button on right up page
+            7. Click the "ok" button on the pop up the gist.Github says
+          
+Data Input:  Correct email and password user 
+            
+Expected Result:1. Redirect to Gist Github Discover
+                2. Redirect to login page 
+                3. Gist that was made will appears on Gist Github Discover and your profile 
+                4. User can delete Gists with different extensions such as .js, .md, .txt, etc.
+                5. Gist existing that was deleted does not appear on Gist Github Discover
+                6. Everyone who accesses https://gist.github.com/ cannot see your deleted gist
+Actual Result : 
+Test Date: 
+Status : (Passed, Failed. Blocked)
+Error Category:(Low, Medium, High)
